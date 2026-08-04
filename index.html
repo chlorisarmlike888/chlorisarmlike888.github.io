@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AR Tabla Periódica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <!-- A-Frame: motor 3D para el navegador -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <!-- AR.js: capa de realidad aumentada (marcadores) sobre A-Frame -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+  <style>
+    .info { position:absolute; bottom:10px; left:10px; z-index:999;
+            color:white; background:rgba(0,0,0,0.6); padding:8px 12px;
+            border-radius:8px; font-family:sans-serif; font-size:14px; }
+  </style>
+</head>
+<body style="margin:0; overflow:hidden;">
+
+  <div class="info">Apunta la cámara a un marcador (0-7) para ver el elemento</div>
+
+  <a-scene embedded arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;" vr-mode-ui="enabled: false">
+
+    <!-- ============================================================= -->
+    <!-- a-assets: acá se precargan las imágenes (más rápido y prolijo -->
+    <!-- que ponerlas directo en el src del a-image). Subí las         -->
+    <!-- imágenes a una carpeta "images/" junto al index.html y        -->
+    <!-- referencialas por nombre de archivo.                          -->
+    <!-- ============================================================= -->
+    <a-assets>
+      <img id="img-hidrogeno" src="images/hidrogeno.jpg">
+      <img id="img-helio" src="images/helio.jpg">
+      <img id="img-litio" src="images/litio.jpg">
+      <img id="img-carbono" src="images/carbono.jpg">
+      <img id="img-oxigeno" src="images/oxigeno.jpg">
+    </a-assets>
+
+    <!-- ============================================= -->
+    <!-- CADA <a-marker> es un elemento distinto.       -->
+    <!-- 'value' = número de marcador AR.js (0 a 7,     -->
+    <!-- marcadores de código de barras integrados).     -->
+    <!-- ============================================= -->
+
+    <!-- HIDRÓGENO -->
+    <a-marker type="barcode" value="0">
+      <a-entity position="0 0.5 0" scale="1 1 1">
+        <a-sphere color="#5DADE2" radius="0.4"></a-sphere>
+        <a-text value="H\nHidrógeno\nZ=1  Masa=1.008\nConfig: 1s1"
+                align="left" position="0.7 0.5 0" color="black" width="2"></a-text>
+        <a-image src="#img-hidrogeno" position="0.7 -0.2 0" width="0.6" height="0.6"></a-image>
+      </a-entity>
+    </a-marker>
+
+    <!-- HELIO -->
+    <a-marker type="barcode" value="1">
+      <a-entity position="0 0.5 0">
+        <a-sphere color="#F7DC6F" radius="0.45"></a-sphere>
+        <a-text value="He\nHelio\nZ=2  Masa=4.0026"
+                align="left" position="0.75 0.3 0" color="black" width="2"></a-text>
+      </a-entity>
+    </a-marker>
+
+    <!-- LITIO -->
+    <a-marker type="barcode" value="2">
+      <a-entity position="0 0.5 0">
+        <a-sphere color="#CD6155" radius="0.5"></a-sphere>
+        <a-text value="Li\nLitio\nZ=3  Masa=6.94"
+                align="left" position="0.8 0.3 0" color="black" width="2"></a-text>
+      </a-entity>
+    </a-marker>
+
+    <!-- CARBONO -->
+    <a-marker type="barcode" value="3">
+      <a-entity position="0 0.5 0">
+        <a-sphere color="#2C3E50" radius="0.5"></a-sphere>
+        <a-text value="C\nCarbono\nZ=6  Masa=12.011"
+                align="left" position="0.8 0.3 0" color="black" width="2"></a-text>
+      </a-entity>
+    </a-marker>
+
+    <!-- OXÍGENO -->
+    <a-marker type="barcode" value="4">
+      <a-entity position="0 0.5 0">
+        <a-sphere color="#E74C3C" radius="0.5"></a-sphere>
+        <a-text value="O\nOxígeno\nZ=8  Masa=15.999"
+                align="left" position="0.8 0.3 0" color="black" width="2"></a-text>
+      </a-entity>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+</body>
+</html>
